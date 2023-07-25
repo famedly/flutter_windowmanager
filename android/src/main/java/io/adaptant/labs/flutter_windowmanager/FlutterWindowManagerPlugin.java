@@ -139,6 +139,9 @@ public class FlutterWindowManagerPlugin implements MethodCallHandler, FlutterPlu
         activity.getWindow().clearFlags(flags);
         result.success(true);
         break;
+      case "getFlagEnabled":
+        result.success((activity.getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_SECURE) != 0);
+        break;
       default:
         result.notImplemented();
     }

@@ -119,4 +119,10 @@ class FlutterWindowManager {
       "flags": flags,
     });
   }
+
+  static Future<bool> getFlagEnabled(int flags) async {
+    return await _channel.invokeMethod("getFlagEnabled", {
+      "flags": flags,
+    });
+  }
 }
