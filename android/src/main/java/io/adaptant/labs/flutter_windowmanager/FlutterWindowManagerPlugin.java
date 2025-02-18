@@ -14,7 +14,6 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /** FlutterWindowManagerPlugin */
 public class FlutterWindowManagerPlugin implements MethodCallHandler, FlutterPlugin, ActivityAware {
@@ -23,21 +22,10 @@ public class FlutterWindowManagerPlugin implements MethodCallHandler, FlutterPlu
   @SuppressWarnings("unused")
   public FlutterWindowManagerPlugin() { }
 
-  private FlutterWindowManagerPlugin(Activity activity) {
-    this.activity = activity;
-  }
-
-  /** Plugin registration. */
-  @Deprecated
-  public static void registerWith(Registrar registrar) {
-    new FlutterWindowManagerPlugin(registrar.activity()).registerWith(registrar.messenger());
-  }
-
   private void registerWith(BinaryMessenger binaryMessenger) {
     final MethodChannel channel = new MethodChannel(binaryMessenger, "flutter_windowmanager");
     channel.setMethodCallHandler(this);
   }
-
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -46,7 +34,6 @@ public class FlutterWindowManagerPlugin implements MethodCallHandler, FlutterPlu
 
   @Override
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-
   }
 
   /**
